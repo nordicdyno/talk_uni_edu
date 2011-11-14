@@ -14,11 +14,11 @@ Yet Another (boring) Unicode Talk
 
 ## Как можно посмотреть слайды и попробовать примеры
 
-  git clone git@github.com:nordicdyno/talk_uni_edu
+    git clone git@github.com:nordicdyno/talk_uni_edu
 
 или
 
-  wget https://github.com/nordicdyno/fav_bot/zipball/master
+    wget https://github.com/nordicdyno/fav_bot/zipball/master
 
 ## Требования
 
