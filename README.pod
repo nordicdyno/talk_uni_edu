@@ -1,0 +1,40 @@
+=pod
+
+Talk about Unicode in Russian
+
+=head2 Название
+
+Unicode: ликбез
+
+=head2 Краткое описание
+
+Yet Another (boring) Unicode Talk
+Рассказ для разработчиков о Unicode
+
+=head2 Цель рассказа
+
+Дать обзор что такое Unicode, помочь избежать "детских" ошибок, которые совершил автор. Демистифицировать терминологию. Дать направление для самостоятельного изучения.
+
+=head2 Как посмотреть слайды и попробовать примеры
+
+
+  git clone git@github.com:nordicdyno/talk_uni_edu
+
+или
+
+  wget https://github.com/nordicdyno/fav_bot/zipball/master
+
+=head3 Требования
+
+=over 2
+
+=item Perl 5.14
+
+=item S5::Pod
+
+=item шрифты с расширенным набором символов Unicode
+
+=back
+
+
+=cut
