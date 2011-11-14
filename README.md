@@ -5,7 +5,8 @@ Talk about Unicode in Russian
 ## Краткое описание
 
 Yet Another (boring) Unicode Talk
-Рассказ для разработчиков о Unicode
+
+Рассказ для разработчиков о Unicode 
 
 ## Цель рассказа
 
