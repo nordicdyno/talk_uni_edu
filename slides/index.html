@@ -9,7 +9,7 @@
 <meta name="generator" content="pod2s5 0.08" />
 <meta name="generator" content="S5" />
 <meta name="version" content="S5 1.1" />
-<meta name="presdate" content="Fri Nov 18 16:55:39 2011" />
+<meta name="presdate" content="Fri Nov 18 17:31:46 2011" />
 <meta name="author" content="nordicdyno" />
 <meta name="company" content="&nbsp;" />
 <!-- configuration parameters -->
@@ -47,7 +47,7 @@ img#me05 {top: 43px;left: 36px;}
 <div id="currentSlide"></div>
 <div id="header"></div>
 <div id="footer">
-<h1>@ &#8226; Fri Nov 18 16:55:39 2011</h1>
+<h1>@ &#8226; Fri Nov 18 17:31:46 2011</h1>
 <h2>юникод-ликбез</h2></div>
 </div><div class="slide">
 <h1>Uncode ликбез
@@ -63,8 +63,24 @@ Unicode. Ликвидируем пробелы в знаниях
 <div class="slide">
 <h1>О чем пойдет речь
 
-
 </h1></div>
+<div class="slide">
+<h1>Решение N1
+
+</h1><font color="#7f7f7f"><i>#!perl</i></font><font color="#7f7f7f"><i><BR>
+</i></font><b>use</b>&nbsp;<font color="#00007f">5.014</font>;<BR>
+<b>use</b>&nbsp;<b>utf8</b>;<BR>
+<b>use</b>&nbsp;<font color="#007f00">Unicode::Normalize</font>;<BR>
+<font color="#007f00">binmode</font>&nbsp;STDOUT,&nbsp;<font color="#ffa500">'</font><font color="#ff0000">:encoding(UTF-8)</font><font color="#ffa500">'</font>;<BR>
+<b>my</b>&nbsp;<font color="#0000ff">$str</font>&nbsp;&nbsp;=&nbsp;<font color="#ffa500">"</font><font color="#ff0000">Îñţérñåţîöñåļîžåţîöñ</font><font color="#ffa500">"</font>;<BR>
+<b>my</b>&nbsp;<font color="#0000ff">$look</font>&nbsp;=&nbsp;<font color="#ffa500">"</font><font color="#ff0000">Nation</font><font color="#ffa500">"</font>;<BR>
+say&nbsp;<font color="#ffa500">"</font><font color="#ff0000">before:&nbsp;</font><font color="#0000ff">$str</font><font color="#ff00ff">\n</font><font color="#ffa500">"</font>;<BR>
+<font color="#0000ff">$str</font>&nbsp;=&nbsp;NFD(<font color="#0000ff">$str</font>);<BR>
+<font color="#0000ff">$str</font>&nbsp;=~&nbsp;<font color="#ffa500">s/</font><font color="#b03060">\pM</font><font color="#ffa500">//og</font>;&nbsp;<font color="#7f7f7f"><i>#&nbsp;remove&nbsp;"marks"</i></font><font color="#7f7f7f"><i><BR>
+</i></font>say&nbsp;<font color="#ffa500">"</font><font color="#ff0000">after:&nbsp;</font><font color="#0000ff">$str</font><font color="#ffa500">"</font>;<BR>
+say&nbsp;<font color="#ffa500">"</font><font color="#ff0000">is_match:&nbsp;</font><font color="#ffa500">"</font>,&nbsp;<font color="#0000ff">$str</font>&nbsp;=~&nbsp;<font color="#ffa500">/</font><font color="#0000ff">$look</font><font color="#ffa500">/i</font>&nbsp;||&nbsp;0;<BR>
+<BR>
+</div>
 <div class="slide">
 <h1>Contact Information
 

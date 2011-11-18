@@ -13,6 +13,26 @@ Unicode. Ликвидируем пробелы в знаниях
 
 =head1 О чем пойдет речь
 
+=end
+
+=head1 Решение N1
+
+=begin perl
+
+#!perl
+use 5.014;
+use utf8;
+use Unicode::Normalize;
+binmode STDOUT, ':encoding(UTF-8)';
+my $str  = "Îñţérñåţîöñåļîžåţîöñ";
+my $look = "Nation";
+say "before: $str\n";
+$str = NFD($str);
+$str =~ s/\pM//og; # remove "marks"
+say "after: $str";
+say "is_match: ", $str =~ /$look/i || 0;
+
+=end perl
 
 =head1 Contact Information
 

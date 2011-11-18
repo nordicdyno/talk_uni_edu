@@ -32,4 +32,5 @@ Yet Another (boring) Unicode Talk
 
 ### для генерации слайдов
 * S5::Pod 
+* Syntax::Highlight::Engine::Kate – подсветка синтаксиса
 
