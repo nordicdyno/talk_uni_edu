@@ -21,7 +21,7 @@ Yet Another (boring) Unicode Talk
 
     wget https://github.com/nordicdyno/fav_bot/zipball/master
 
-## Что нужно для просмотра слайдов и самостоятельных экспирементов
+## Что нужно для просмотра слайдов и самостоятельных экспериментов
 
 * Perl 5.14
 * S5::Pod
