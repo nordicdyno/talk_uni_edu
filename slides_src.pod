@@ -1,0 +1,22 @@
+=encoding utf8
+
+=head1 Uncode ликбез
+
+<center>
+<head3 align=center>
+<font size="+5">
+Unicode. Ликвидируем пробелы в знаниях
+</font>
+</head3>
+
+=end html
+
+=head1 О чем пойдет речь
+
+
+=head1 Contact Information
+
+=end html
+
+=cut
+:v/^ /s/Perl/🐪/gc
