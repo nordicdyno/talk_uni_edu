@@ -21,9 +21,9 @@ Yet Another (boring) Unicode Talk
 
     wget https://github.com/nordicdyno/fav_bot/zipball/master
 
-## Требования
+## Что нужно для просмотра слайдов и самостоятельных экспирементов
 
 * Perl 5.14
 * S5::Pod
-* шрифты с расширенным набором символов Unicode
+* шрифты с расширенным набором символов Unicode (папка `fonts`)
 
