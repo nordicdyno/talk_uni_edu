@@ -19,7 +19,7 @@ Yet Another (boring) Unicode Talk
 
 или
 
-    wget https://github.com/nordicdyno/fav_bot/zipball/master
+    wget https://github.com/nordicdyno/talk_uni_edu/zipball/master
 
 ## Необходимо 
 ###для просмотра слайдов 
