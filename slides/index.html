@@ -5,18 +5,18 @@
 
 <head>
 <title>юникод-ликбез</title>
-<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pod2s5 0.08" />
 <meta name="generator" content="S5" />
 <meta name="version" content="S5 1.1" />
-<meta name="presdate" content="Fri Nov 18 17:31:46 2011" />
-<meta name="author" content="nordicdyno" />
+<meta name="presdate" content="Sun Nov 20 02:34:28 2011" />
+<meta name="author" content="tim" />
 <meta name="company" content="&nbsp;" />
 <!-- configuration parameters -->
 <meta name="defaultView" content="slideshow" />
 <meta name="controlVis" content="hidden" />
 <!-- style sheet links -->
-<link rel="stylesheet" href="ui/pixel/slides.css" type="text/css" media="projection" id="slideProj" />
+<link rel="stylesheet" href="ui/default/slides.css" type="text/css" media="projection" id="slideProj" />
 <link rel="stylesheet" href="ui/default/outline.css" type="text/css" media="screen" id="outlineStyle" />
 <link rel="stylesheet" href="ui/default/print.css" type="text/css" media="print" id="slidePrint" />
 <link rel="stylesheet" href="ui/default/opera.css" type="text/css" media="projection" id="operaFix" />
@@ -47,28 +47,41 @@ img#me05 {top: 43px;left: 36px;}
 <div id="currentSlide"></div>
 <div id="header"></div>
 <div id="footer">
-<h1>@ &#8226; Fri Nov 18 17:31:46 2011</h1>
+<h1>@ &#8226; Sun Nov 20 02:34:28 2011</h1>
 <h2>юникод-ликбез</h2></div>
-</div><div class="slide">
-<h1>Uncode ликбез
+</div><p>=encoding utf8
 
-</h1><p><center>
-<head3 align=center>
-<font size="+5">
-Unicode. Ликвидируем пробелы в знаниях
-</font>
-</head3>
+</p><div class="slide">
+<h1>Unicode ликбез
 
-</p></div>
+</h1><p class="center" style="font-size:72px;text-align:center"> Unicode. Ликвидируем пробелы в знаниях</p><div class="note" id="note"><ul>
+<li>обзор Unicode, что это такое на <em>самом деле</em></li>
+<li>помочь избежать "детских" ошибок</li>
+<li>демистифицировать терминологию</li>
+<li>рассказать о том, куда смотреть дальше (что почитать)</li>
+</ul></div></div>
 <div class="slide">
 <h1>О чем пойдет речь
 
-</h1></div>
+</h1><ul>
+<li>пункт один</li>
+<li>2 пункт</li>
+<li>3 пт</li>
+</ul><div class="note" id="note1"><ul>
+<li>Легко увериться что знаешь Unicode</li>
+<li>Сужу по собственному опыту</li>
+</ul></div></div>
+<div class="slide">
+<h1>задачка
+
+</h1><p class="center" style="font-size:72px;text-align:center">найти в строке <br />
+<strong>"Îñţérñåţîöñåļîžåţîöñ"</strong><br />
+подстроку <br />
+<strong>"Nation"</strong></p></div>
 <div class="slide">
 <h1>Решение N1
 
-</h1><font color="#7f7f7f"><i>#!perl</i></font><font color="#7f7f7f"><i><BR>
-</i></font><b>use</b>&nbsp;<font color="#00007f">5.014</font>;<BR>
+</h1><br><b>use</b>&nbsp;<font color="#00007f">5.014</font>;<BR>
 <b>use</b>&nbsp;<b>utf8</b>;<BR>
 <b>use</b>&nbsp;<font color="#007f00">Unicode::Normalize</font>;<BR>
 <font color="#007f00">binmode</font>&nbsp;STDOUT,&nbsp;<font color="#ffa500">'</font><font color="#ff0000">:encoding(UTF-8)</font><font color="#ffa500">'</font>;<BR>
@@ -80,8 +93,82 @@ say&nbsp;<font color="#ffa500">"</font><font color="#ff0000">before:&nbsp;</font
 </i></font>say&nbsp;<font color="#ffa500">"</font><font color="#ff0000">after:&nbsp;</font><font color="#0000ff">$str</font><font color="#ffa500">"</font>;<BR>
 say&nbsp;<font color="#ffa500">"</font><font color="#ff0000">is_match:&nbsp;</font><font color="#ffa500">"</font>,&nbsp;<font color="#0000ff">$str</font>&nbsp;=~&nbsp;<font color="#ffa500">/</font><font color="#0000ff">$look</font><font color="#ffa500">/i</font>&nbsp;||&nbsp;0;<BR>
 <BR>
-</div>
+<div class="note" id="note3"><ul>
+<li>регулярные выражения ! (да, Ватсон)</li>
+<li>убрать закорючки у символов</li>
+<li>http://stackoverflow.com/questions/7429964/how-to-match-string-with-diacritic-in-modern-perl/</li>
+<li>поискал решение как убрать назойливые закорючки, нашел на perlmonks</li>
+</ul></div></div>
+<div class="slide">
+<h1>Решение N2
+
+</h1><br><b>use</b>&nbsp;<font color="#00007f">5.014</font>;<BR>
+<b>use</b>&nbsp;<b>utf8</b>;<BR>
+<b>use</b>&nbsp;<font color="#007f00">Unicode::Collate</font>;<BR>
+<b>my</b>&nbsp;<font color="#0000ff">$str</font>&nbsp;&nbsp;=&nbsp;<font color="#ffa500">"</font><font color="#ff0000">Îñţérñåţîöñåļîžåţîöñ</font><font color="#ffa500">"</font>;<BR>
+<b>my</b>&nbsp;<font color="#0000ff">$look</font>&nbsp;=&nbsp;<font color="#ffa500">"</font><font color="#ff0000">Nation</font><font color="#ffa500">"</font>;<BR>
+<b>my</b>&nbsp;<font color="#0000ff">$Collator</font>&nbsp;=&nbsp;<font color="#007f00">Unicode::Collate</font>-&gt;new(<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;normalization&nbsp;=&gt;&nbsp;<font color="#007f00">undef</font>,&nbsp;level&nbsp;=&gt;&nbsp;<font color="#00007f">1</font><BR>
+);<BR>
+<b>my</b>&nbsp;<font color="#0000ff">@match</font>&nbsp;=&nbsp;<font color="#0000ff">$Collator</font>-&gt;<font color="#0000ff">match</font>(<font color="#0000ff">$str</font>,&nbsp;<font color="#0000ff">$look</font>);<BR>
+<b>my</b>&nbsp;<font color="#0000ff">@index</font>&nbsp;=&nbsp;<font color="#0000ff">$Collator</font>-&gt;<font color="#0000ff">index</font>(<font color="#0000ff">$str</font>,&nbsp;<font color="#0000ff">$look</font>);<BR>
+<BR>
+<div class="note" id="note4"><ul>
+<li>опубликовал решение на stackoverflow.com</li>
+<li>комментарий: "This is the wrong way to do it. You need to use a <span class="caps">UCA </span>match at level 1. – tchrist Sep 15 at 12:36"</li>
+<li>по сути этот комментарий сначала побудил меня разобраться что же неправильного в работающем примере </li>
+<li>wtf <span class="caps">UCA,</span> Collation, <span class="caps">NFD, NFC</span>? </li>
+<li>рассказать о том что я узнал</li>
+</ul></div></div>
+<div class="slide">
+<h1>Что мы знаем о Unicode (или думаем что знаем)
+
+</h1><ul>
+<li>там много смешных символов</li>
+<li>perlunitut, perlunitro, perlunicode, perlunifaq</li>
+<li>пост Джоэла Спольски (2001 год!)</li>
+<li>win cpecific (специальные функции для работы с unicode строками)</li>
+<li>Perl specific: use utf8, Encode (некий мистический флажок на скаляре)</li>
+<li>мистический <span class="caps">BOM</span></li>
+<li>доклад mons'а :)</li>
+</ul></div>
+<div class="slide">
+<h1>Unicode это
+
+</h1><p><a href="http://98.245.80.27/tcpc/OSCON2011/pue.html#slide4"><span class="caps">PUE, </span>slide4</a><br />
+* <strong>стандарт</strong><br />
+* правила casemapping, casefolding<br />
+* normalization forms<br />
+* grapheme clusters<br />
+* гибкие правила collation<br />
+* правила переносов для слов и разбиения строк<br />
+* специальные правила для регулярных выражений<br />
+* тысячи именованых свойств (properties)<br />
+* численные эквивалентности (U+216B <span class="caps">XII</span>)<br />
+* двунаправленный текст<br />
+* glypth variant<br />
+* &amp; much, much more!</p></div>
+<div class="slide">
+<h1>Unicode это не
+
+</h1><ul>
+<li>расширенная таблица символов (не только)</li>
+<li>не отвечает за представление символов, ну почти (шрифты, программы)</li>
+</ul></div>
+<div class="slide">
+<h1>Терминология
+
+</h1><ul>
+<li><span class="caps">UCS</span>-2, <span class="caps">UCS</span>-4</li>
+<li><span class="caps">UTF</span>-16, <span class="caps">UTF</span>-32</li>
+<li><span class="caps">UTF</span>-8</li>
+</ul></div>
+<div class="slide">
+<h1>Картинка
+
+</h1><p class="center" style="text-align:center"><img src="../img/blind.jpg" alt="" /></p></div>
 <div class="slide">
 <h1>Contact Information
+
 
 </h1></div></body></html>
