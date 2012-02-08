@@ -5,7 +5,8 @@ Talk about Unicode in Russian
 ## Краткое описание
 
 Yet Another (boring) Unicode Talk
-Рассказ для разработчиков о Unicode
+
+Рассказ для разработчиков о Unicode 
 
 ## Цель рассказа
 
@@ -14,15 +15,22 @@ Yet Another (boring) Unicode Talk
 
 ## Как можно посмотреть слайды и попробовать примеры
 
-  git clone git@github.com:nordicdyno/talk_uni_edu
+    git clone git@github.com:nordicdyno/talk_uni_edu
 
 или
 
-  wget https://github.com/nordicdyno/fav_bot/zipball/master
+    wget https://github.com/nordicdyno/talk_uni_edu/zipball/master
 
-## Требования
+## Необходимо 
+###для просмотра слайдов 
+* браузер 
+* шрифты с расширенным набором символов Unicode (папка `fonts`)
 
-* Perl 5.14
-* S5::Pod
-* шрифты с расширенным набором символов Unicode
+###  для запуска примеров и самостоятельных экспериментов
+* Perl 5.14 
+* Unicode::Tussle
+
+### для генерации слайдов
+* S5::Pod 
+* Syntax::Highlight::Engine::Kate – подсветка синтаксиса
 

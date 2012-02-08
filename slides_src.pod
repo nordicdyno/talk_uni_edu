@@ -1,0 +1,215 @@
+=pod
+
+=encoding utf8
+
+=head1 Unicode ликбез
+
+=begin textile
+
+
+p{font-size:72px}=.  Unicode. Ликвидируем пробелы в знаниях
+
+=end 
+
+=begin note_textile
+
+* обзор Unicode, что это такое на _самом деле_
+* помочь избежать "детских" ошибок
+* демистифицировать терминологию
+* рассказать о том, куда смотреть дальше (что почитать)
+
+=end
+
+=head1 О чем пойдет речь
+
+=begin textile
+
+* пункт один
+* 2 пункт
+* 3 пт
+
+=end
+
+=begin note_textile
+
+* Легко увериться что знаешь Unicode
+* Сужу по собственному опыту
+
+=end 
+
+=head1 задачка
+
+=begin textile
+
+p{font-size:72px}=. найти в строке 
+*"Îñţérñåţîöñåļîžåţîöñ"*
+подстроку 
+*"Nation"*
+
+=end
+
+=head1 Решение N1
+
+=begin perl
+
+use 5.014;
+use utf8;
+use Unicode::Normalize;
+binmode STDOUT, ':encoding(UTF-8)';
+my $str  = "Îñţérñåţîöñåļîžåţîöñ";
+my $look = "Nation";
+say "before: $str\n";
+$str = NFD($str);
+$str =~ s/\pM//og; # remove "marks"
+say "after: $str";
+say "is_match: ", $str =~ /$look/i || 0;
+
+=end perl
+
+=begin note_textile
+
+* регулярные выражения ! (да, Ватсон)
+* убрать закорючки у символов
+* http://stackoverflow.com/questions/7429964/how-to-match-string-with-diacritic-in-modern-perl/
+* поискал решение как убрать назойливые закорючки, нашел на perlmonks
+
+=end
+
+=head1 Решение N2
+
+=begin perl
+
+use 5.014;
+use utf8;
+use Unicode::Collate;
+my $str  = "Îñţérñåţîöñåļîžåţîöñ";
+my $look = "Nation";
+my $Collator = Unicode::Collate->new(
+    normalization => undef, level => 1
+);
+my @match = $Collator->match($str, $look);
+my @index = $Collator->index($str, $look);
+
+=end 
+
+=begin note_textile
+
+* опубликовал решение на stackoverflow.com
+* комментарий: "This is the wrong way to do it. You need to use a UCA match at level 1. – tchrist Sep 15 at 12:36"
+* по сути этот комментарий сначала побудил меня разобраться что же неправильного в работающем примере 
+* wtf UCA, Collation, NFD, NFC? 
+* рассказать о том что я узнал
+
+=end
+
+=head1 Что мы знаем о Unicode (или думаем что знаем)
+
+=begin textile
+
+* там много смешных символов
+* perlunitut, perlunitro, perlunicode, perlunifaq
+* пост Джоэла Спольски (2001 год!)
+* win cpecific (специальные функции для работы с unicode строками)
+* Perl specific: use utf8, Encode (некий мистический флажок на скаляре)
+* мистический BOM
+* доклад mons'а :)
+
+=end
+
+=head1 Unicode это
+
+=begin textile
+
+"PUE, slide4":http://98.245.80.27/tcpc/OSCON2011/pue.html#slide4
+* *стандарт*
+* правила casemapping, casefolding
+* normalization forms
+* grapheme clusters
+* гибкие правила collation
+* правила переносов для слов и разбиения строк
+* специальные правила для регулярных выражений
+* тысячи именованых свойств (properties)
+* численные эквивалентности (U+216B XII)
+* двунаправленный текст
+* glypth variant
+* & much, much more!
+
+=end
+
+=head1 Unicode это не
+
+=begin textile
+
+* расширенная таблица символов (не только)
+* не отвечает за представление символов, ну почти (шрифты, программы)
+
+=end
+
+=head1 Терминология
+
+=begin textile
+
+* UCS-2, UCS-4
+* UTF-16, UTF-32
+* UTF-8
+*
+
+=end
+
+=head1 Терминология
+
+=begin textile
+
+* code points
+* chars
+* графемы, glypth
+* diacritic, marks
+* ligature, Ideographs
+* surrogates
+* non chars
+
+=end
+
+=head1 Терминология
+
+=begin textile
+
+* Нормализация
+* Collation
+* Casefolding, Casemapping
+
+=end
+
+=head1 Практика
+
+=begin textile
+
+* Unicode::Tussle
+* Perl 5.14
+* Casefolding, Casemapping
+
+=end
+
+=head1 Вопрос: если я работаю только с русскоязычной аудиторией?
+
+=begin textile
+
+зачем нужны все эти знания? Чем они могут быть полезны?
+
+
+=end
+
+
+=head1 Картинка
+
+=begin textile
+
+p=. !../img/blind.jpg!
+
+=end
+
+=head1 Contact Information
+
+
+=cut
+:v/^ /s/Perl/🐪/gc
